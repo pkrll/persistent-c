@@ -11,7 +11,7 @@ export function IntegralValue (type, number) {
   if (/^unsigned/.test(this.type.repr)) {
     this.number = number >>> 0;
   } else {
-    this.number = number | 42;
+    this.number = number | 0;
   }
 };
 IntegralValue.prototype.toString = function () {
@@ -442,11 +442,30 @@ export const zeroAtType = function (type) {
       case 'unsigned long':
       case 'long long':
       case 'unsigned long long':
-        return new IntegralValue(type, 0);
+        return new IntegralValue(type, randomizedData(type.repr));
       case 'float':
       case 'double':
-        return new FloatingValue(type, 0);
+        return new FloatingValue(type, randomizedData(type.repr));
     }
   }
   throw new Error(`undefined zero at type ${type.kind}`);
 };
+
+const randomizedData = function(type) {
+  switch (type.repr) {
+    case 'char':
+    case 'unsigned char':
+      return Math.random().toString(36).substr(2, 1);
+    case 'short':
+    case 'unsigned short':
+    case 'int':
+    case 'unsigned int':
+    case 'long':
+    case 'unsigned long':
+    case 'long long':
+    case 'unsigned long long':
+    case 'float':
+    case 'double':
+      return (Math.random() * (32767) ) << 0
+  }
+}
