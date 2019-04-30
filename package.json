@@ -4,7 +4,6 @@
   "description": "A C language step-by-step evaluator written in JavaScript and using persistent (immutable) data structures.",
   "main": "index.js",
   "scripts": {
-    "postinstall": "npm install && npm run build && mv dist/*.js .",
     "test": "babel-tape-runner ./spec/**/*.spec.js | tap-spec",
     "build": "babel src --out-dir dist && cp package.json dist/",
     "watch": "babel src --out-dir dist --watch"
