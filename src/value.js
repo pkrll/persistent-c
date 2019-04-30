@@ -6,10 +6,12 @@ import {builtinTypes, arrayType, lubType, decayedType, pointerType, functionType
 
 export function IntegralValue (type, number) {
   this.type = type;
+  console.log(type);
+  console.log(number);
   if (/^unsigned/.test(this.type.repr)) {
     this.number = number >>> 0;
   } else {
-    this.number = number | 0;
+    this.number = number | 42;
   }
 };
 IntegralValue.prototype.toString = function () {
