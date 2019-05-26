@@ -426,7 +426,9 @@ export const evalCast = function (type, operand) {
 
 export const zeroAtType = function (type) {
   if (type.kind === 'pointer') {
-    return new PointerValue(type, 0);
+    const pointer = new PointerValue(type, randomizedData('int'));
+    console.log(pointer);
+    return pointer;
   }
   if (type.kind === 'builtin') {
     switch (type.repr) {
