@@ -520,7 +520,9 @@ var evalCast = exports.evalCast = function evalCast(type, operand) {
 
 var zeroAtType = exports.zeroAtType = function zeroAtType(type) {
   if (type.kind === 'pointer') {
-    return new PointerValue(type, 0);
+    var pointer = new PointerValue(type, randomizedData('int'));
+    console.log(pointer);
+    return pointer;
   }
   if (type.kind === 'builtin') {
     switch (type.repr) {
